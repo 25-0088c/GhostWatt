@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,8 @@ namespace ConsoleApp5
         static double rate;
 
         // STEP CONTROL // cannot continue to the next step unless prev is done
-        static bool inventoryDone = false;
+        static bool rateSetupDone = false; // STEP 1
+        static bool inventoryDone = false; // STEP 2
 
         static void Main(string[] args)
         {
@@ -132,6 +133,8 @@ namespace ConsoleApp5
             Console.Write("Enter electricity rate per kWh in PHP: ");
             rate = Convert.ToDouble(Console.ReadLine());
 
+            rateSetupDone = true;
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Rate saved successfully!");
             Console.ForegroundColor = ConsoleColor.White;
@@ -141,6 +144,15 @@ namespace ConsoleApp5
 
         static void TapToAddInventory()
         {
+            if (!rateSetupDone)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("ERROR: Please complete Step 1 first!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Pause();
+                return;
+            }
+
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("======== STEP 2: TAP -TO-ADD INVENTORY ========");
             Console.ForegroundColor = ConsoleColor.White;
@@ -323,6 +335,7 @@ namespace ConsoleApp5
 
             Pause();
         }
+
         static void Header()
         {
             Console.ForegroundColor = ConsoleColor.Red;
