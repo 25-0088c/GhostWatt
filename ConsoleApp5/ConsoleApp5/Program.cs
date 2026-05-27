@@ -195,10 +195,10 @@ namespace ConsoleApp5
 
         static void HiddenCostCalculator()
         {
-            if (!inventoryDone)
+            if (!inventoryDone && !rateSetupDone)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("ERROR: Please complete Inventory first!");
+                Console.WriteLine("ERROR: Please complete previous steps first!");
                 Console.ForegroundColor = ConsoleColor.White;
                 Pause();
                 return;
@@ -233,10 +233,10 @@ namespace ConsoleApp5
 
         static void NightShiftChecklist()
         {
-            if (!inventoryDone)
+            if (!inventoryDone && !rateSetupDone)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("ERROR: Please complete Inventory first!");
+                Console.WriteLine("ERROR: Please complete previous steps first!");
                 Console.ForegroundColor = ConsoleColor.White;
                 Pause();
                 return;
